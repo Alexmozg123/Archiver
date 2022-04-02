@@ -1,12 +1,10 @@
-package HaffmanTree;
+package Haffman.DetailsHT;
 
 public class BinaryTree {
 
     private TreeNode root;
 
-    public BinaryTree(TreeNode root) {
-        this.root = root;
-    }
+    public BinaryTree(TreeNode root) { this.root = root; }
 
     public BinaryTree() {}
 

@@ -1,4 +1,4 @@
-package HaffmanTree;
+package Haffman.DetailsHT;
 
 public class TreeNode {
 
