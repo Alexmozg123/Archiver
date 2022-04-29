@@ -1,9 +1,10 @@
 package Haffman;
 
+import static Haffman.HuffmanTree.ENCODING_TABLE_SIZE;
+
 public class HuffmanOperator {
-    private final byte ENCODING_TABLE_SIZE = 127;       //длина таблицы
-    private String myString;                            //исходное сообщение
-    private int[] freqArray;                            //частотаная таблица
+    private final String myString;                            //исходное сообщение
+    private final int[] freqArray;                            //частотаная таблица
     private String[] encodingArray;                     //кодировочная таблица
     private double ratio;                               //коэффициент сжатия
 
@@ -17,8 +18,6 @@ public class HuffmanOperator {
 
         freqArray = MainHuffmanTree.getFrequencyArray();
     }
-
-    public HuffmanOperator() {}//for intermediate;
 
     //---------------------------------------compression-----------------------------------------------------------
     private String getCompressedString() {
@@ -42,20 +41,8 @@ public class HuffmanOperator {
                 .replace(" ", "0") + intermediate;
 
         //идеализированный коэффициент
-        setCompressionRatio();
         //System.out.println("===============================================================");
         return compressed;
-    }
-
-    private void setCompressionRatio() {//посчитать идеализированный коэффициент
-        double sumA = 0, sumB = 0;//A-the original sum
-        for (int i = 0; i < ENCODING_TABLE_SIZE; i++) {
-            if (freqArray[i] != 0) {
-                sumA += 8 * freqArray[i];
-                sumB += encodingArray[i].length() * freqArray[i];
-            }
-        }
-        ratio = sumA / sumB;
     }
 
     public byte[] getByteMsg() {//final compression
@@ -105,17 +92,5 @@ public class HuffmanOperator {
 
     public double getCompressionRatio() {
         return ratio;
-    }
-
-
-    public void displayEncodingArray() {//для отладки
-        System.out.println("======================Encoding table====================");
-        for (int i = 0; i < ENCODING_TABLE_SIZE; i++) {
-            //if (freqArray[i] != 0) {
-            System.out.print((char)i + " ");
-            System.out.println(encodingArray[i]);
-            //}
-        }
-        System.out.println("========================================================");
     }
 }

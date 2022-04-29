@@ -5,7 +5,7 @@ import Haffman.DetailsHT.PriorityQueue;
 import Haffman.DetailsHT.TreeNode;
 
 public class HuffmanTree {
-    private final byte ENCODING_TABLE_SIZE = 127;   //длина кодировочной таблицы
+    public static final int ENCODING_TABLE_SIZE = Character.MAX_CODE_POINT;   //длина кодировочной таблицы
     private final String myString;                        //сообщение
     private final BinaryTree huffmanTree;                 //дерево Хаффмана
     private final int[] freqArray;                        //частотная таблица
@@ -23,6 +23,7 @@ public class HuffmanTree {
 
         encodingArray = new String[ENCODING_TABLE_SIZE];
         fillEncodingArray(huffmanTree.getRoot(), "", "");
+        int a = 2;
     }
 
     //--------------------frequency array------------------------
@@ -42,7 +43,7 @@ public class HuffmanTree {
         //алгоритм описан выше
         for (int i = 0; i < ENCODING_TABLE_SIZE; i++) {
             if (freqArray[i] != 0) {                                            //если символ существует в строке
-                TreeNode newNode = new TreeNode((char) i, (char) freqArray[i]);        //то создать для него TreeNode
+                TreeNode newNode = new TreeNode(freqArray[i], (char) i);        //то создать для него TreeNode
                 BinaryTree newTree = new BinaryTree(newNode);                   //а для TreeNode создать BinaryTree
                 pq.insert(newTree);                                             //вставить в очередь
             }
@@ -100,3 +101,5 @@ public class HuffmanTree {
         return myString;
     }
 }
+
+
